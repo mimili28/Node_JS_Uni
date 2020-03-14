@@ -37,22 +37,33 @@
           <ul> 
             <li><a href="api.html">REST API</a></li>
             <li><a href="express.html">Express</a></li> 
-            <li><a href="npm.html">npm</a></li> 
-            <li><a href="steps.html">Steps to build a REST API</a></li> 
-            <li><a href="#">jQuery</a></li> 
-            <li><a href="#">Commands</a></li> 
+            <li><a href="#">npm</a></li> 
+            <li><a href="#">app.js</a></li> 
           </ul>
         <a href="#">Link 4</a> 
     </div>
     <div class="documentation-text">
-      <h3>What is Node.js</h3>
-      <p>Node. js is a platform built on Chrome's JavaScript runtime for easily building fast 
-        and scalable network applications. Node.js uses an event-driven, 
-        non-blocking I/O model that makes it lightweight and efficient, 
-        perfect for data-intensive real-time applications that run across distributed devices.</p>
-      <p>Node.js runs on various platforms(Windows, Mac, Linux..)</p>
-      <p>Node.js also provides a rich library of various JavaScript modules which simplifies the development of web applications.</p>
+        <h3>npm</h3>
+        <h4>What is npm</h4>
+        <p>1.  It is an online repository for the publishing of open-source Node.js projects</p>
+        <p>2.  It is also a software Package Manager and Installer</p>
 
+        <h4>Installing npm</h4>
+        <p>npm is beeing installed together with Node.js so in order to use npm first you need to install Node.js</p>
+        <p>Node.js can be installed from <a target="_blank" href="https://nodejs.org/">https://nodejs.org</a></p>
+
+        <h4>Software Package Manager</h4>
+        <p>All npm packages are defined in files called package.json.</p>
+        <p>We write the packages in a key called dependencies as key-value pairs where the key is the package name and the value is the version.</p>
+        <p>Example:</p>
+        <li class="code">{ <br>
+            "dependencies": { <br>
+                "express": "4.17.1", <br>
+                "nodemon": "^2.0.2", <br>
+                "request": "2.88.2" <br>
+            } <br>
+        }</li>
+      
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="index.js"></script>
