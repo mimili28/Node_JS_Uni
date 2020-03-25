@@ -8,7 +8,7 @@
 <body>
     <nav class="top-bar">
         <ul class="title-area">
-            <!-- <img class="image" src="../images/logo.png" alt="node.js"> -->
+            
             <dev class="title">
               <h1>Node.js Documentation</h1>
               <h4>By Maria Ilieva</h4>
@@ -18,24 +18,25 @@
       </nav>
       
       <div class="vertical-menu">
-          <a href="index.html">Home</a>
-          <a href="#">Introduction</a>
-            <ul> 
-              <li><a href="basics.html">Basics</a></li> 
-              <li><a href="strings.html">Strings</a></li> 
-              <li><a href="objects.html">Objects</a></li> 
-              <li><a href="arrays.html">Arrays</a></li> 
-              <li><a href="functions.html">Functions</a></li> 
-            </ul>
-          <a href="#">Build node.js application</a>
-            <ul> 
-              <li><a href="api.html">REST API</a></li>
-              <li><a href="express.html">Express</a></li> 
-              <li><a href="#">npm</a></li> 
-              <li><a href="#">app.js</a></li> 
-            </ul>
-          <a href="#">Link 4</a>
-      </div>
+        <a href="/">Home</a>
+        <p>Introduction</p>
+          <ul> 
+            <li><a href="/basics">Basics</a></li> 
+            <li><a href="/strings">Strings</a></li> 
+            <li><a href="/objects">Objects</a></li> 
+            <li><a href="/arrays">Arrays</a></li> 
+            <li><a href="/functions">Functions</a></li> 
+          </ul>
+        <p>Build node.js application</p>
+          <ul> 
+            <li><a href="/api">REST API</a></li>
+            <li><a href="/express">Express</a></li> 
+            <li><a href="/npm">npm</a></li> 
+            <li><a href="/steps">Steps to build a REST API</a></li> 
+            <li><a href="/jQuery">jQuery</a></li> 
+            <li><a href="/commands">Commands</a></li> 
+          </ul>
+    </div>
 
       <div class="documentation-text">
           <h3>Objects</h3>
@@ -43,40 +44,38 @@
               The values can consist of properties and methods, 
               and may contain all other JavaScript data types, such as strings, numbers, and Booleans.</p>
           <p>Objects are also variables but they can contain many values:</p>
-          <li class="code">var car = {type:"Fiat", model:"500", color:"white"};</li>
+          <pre><code>var phone = {type:"Huawei", model:"P30", color:"white"};</code></pre>
           <p>The values are written as name:value pairs (name and value separated by a colon).</p>
           <h4>Accessing Object Properties</h4>
           <p>You can access object properties in two ways:</p>
-          <li class="code">objectName.propertyName  //dot notation</li>
-          <li class="code">objectName["propertyName"]  //bracket notation</li>
+          <pre><code>objectName.propertyName  //dot notation</code></pre>
+          <pre><code>objectName["propertyName"]  //bracket notation</code></pre>
           <h4>Add a property</h4>
-          <li class="code">var person = {};</li>
-          <li class="code">person.age = 20;</li>
+          <pre><code>var person = {};</code></pre>
+          <pre><code>person.age = 20;</code></pre>
           <h4>Remove a property</h4>
-          <li class="code">var person = {eyeColor: "brown"};</li>
-          <li class="code">delete person.eyeColor;</li>
+          <pre><code>var person = {phone_number: "8962476"};</code></pre>
+          <pre><code>delete person.phone_number;</code></pre>
           <h4>Object Methods</h4>
           <p>Objects can also have methods.
             Methods are actions that can be performed on objects.
-            They are stored in properties as function definitions.</p>
-            <li>var person = {
-                firstName: "John",
-                lastName : "Doe",
-                id       : 5566,
+          </p>
+            <pre><code>var person = {
+                firstName: "Mike",
+                lastName : "Johnson",
+                id       : 1245,
                 fullName : function() {
                   return this.firstName + " " + this.lastName;
                 }
-              };</li>
+              };</code></pre>
           <h4>The this Keyword</h4>
           <p>In a function definition, this refers to the "owner" of the function.
             In the example above, this is the person object that "owns" the fullName function.
           </p>  
           <h4>Accessing Object Methods</h4>
-          <li>objectName.methodName()</li>
+          <pre><code>objectName.methodName()</code></pre>
           <p>Example</p>
-          <li>var name = person.fullName();</li>
-          
-
+          <pre><code>var name = person.fullName();</code></pre>
 
       </div>
 

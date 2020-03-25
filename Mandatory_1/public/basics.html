@@ -8,7 +8,7 @@
 <body>
     <nav class="top-bar">
         <ul class="title-area">
-            <!-- <img class="image" src="../images/logo.png" alt="node.js"> -->
+            
             <dev class="title">
               <h1>Node.js Documentation</h1>
               <h4>By Maria Ilieva</h4>
@@ -18,53 +18,53 @@
       </nav>
       
       <div class="vertical-menu">
-          <a href="index.html">Home</a>
-          <a href="#">Introduction</a>
-            <ul> 
-              <li><a href="basics.html">Basics</a></li> 
-              <li><a href="strings.html">Strings</a></li> 
-              <li><a href="objects.html">Objects</a></li> 
-              <li><a href="arrays.html">Arrays</a></li> 
-              <li><a href="functions.html">Functions</a></li> 
-            </ul>
-          <a href="#">Build node.js application</a>
-            <ul> 
-              <li><a href="api.html">REST API</a></li>
-              <li><a href="express.html">Express</a></li> 
-              <li><a href="#">npm</a></li> 
-              <li><a href="#">app.js</a></li> 
-            </ul>
-          <a href="#">Link 4</a>
-      </div>
+        <a href="/">Home</a>
+        <p>Introduction</p>
+          <ul> 
+            <li><a href="/basics">Basics</a></li> 
+            <li><a href="/strings">Strings</a></li> 
+            <li><a href="/objects">Objects</a></li> 
+            <li><a href="/arrays">Arrays</a></li> 
+            <li><a href="/functions">Functions</a></li> 
+          </ul>
+        <p>Build node.js application</p>
+          <ul> 
+            <li><a href="/api">REST API</a></li>
+            <li><a href="/express">Express</a></li> 
+            <li><a href="/npm">npm</a></li> 
+            <li><a href="/steps">Steps to build a REST API</a></li> 
+            <li><a href="/jQuery">jQuery</a></li> 
+            <li><a href="/commands">Commands</a></li> 
+          </ul>
+    </div>
 
       <div class="documentation-text">
         <h3>What is Javascript</h3>
-        <p>JavaScript ("JS" for short) is a full-fledged dynamic programming language that,
+        <p>JavaScript ("JS" for short) is a dynamic programming language that,
            when applied to an HTML document, can provide dynamic interactivity on websites.</p>
         <h3>Variables</h3>
         <p>Variables are containers that you can store values in. </p>
         <p>Declaring a variable:
-          <li class="code">let myVariable;</li>
+          <pre><code>let myVariable;</code></pre>
         </p>
         <p>Giving value to a variable after it has been declared:
-          <li class="code">myVariable = 'John';</li>
+          <pre><code>myVariable = 'John';</code></pre>
         </p>
         <p>Declaring and giving value in one line:
-          <li class="code">let myVariable = 'John';</li>
+          <pre><code>let myVariable = 'John';</code></pre>
         </p>
         <p>You can retrieve the value by just calling the variable by name:
-          <li class="code">myVariable;</li>
+          <pre><code>myVariable;</code></pre>
         </p>
         <p>You can change the given value of a variable:
-          <li class="code">let myVariable = 'John'</li>
-          <li class="code">myVariable = 'Mike'</li>
+          <pre><code>let myVariable = 'John'</code></pre>
+          <pre><code>myVariable = 'Mike'</code></pre>
         </p>
         <p>Variables can hold values that have differnet data types sush as String, Number, Boolean, Array and Object</p>
         <h4>Scope</h4>
-        <p>Scope defines where variables and functions are accessible inside of your program. 
+        <p>Scope defines where variables and functions are accessible inside of our program. 
           In JavaScript, there are two kinds of scope - global scope, and function scope.
-          <li>function scope - variable is “scoped” to the function it was created in 
-            and is only accessible inside of that function or, any nested functions.</li>
+          <li>function scope - variable is only accessible inside of the function it was created in or, any nested functions.</li>
           <li>global scope - the variable can be accessed by all scripts and functions on a web page.</li>
         </p>
         <h4>Var, let and const - the difference</h4>
@@ -78,18 +78,20 @@
 
           <li>let
             <ul>
-              <li>block scoped -> a variable created with the let keyword is available inside the “block” (anything surrounded by a curly brace {}) 
+              <li>block scoped -> a variable created with the let keyword is available only inside the “block” (anything surrounded by a curly brace {}) 
                 that it was created in as well as any nested blocks.</li>
               <li>ReferenceError when accessing a variable before it's declared</li>
             </ul>
           </li>
         </p>
+        <p>let vs const</p>
+        <li>const is almost exactly the same as let. However, the only difference is that once you’ve assigned a value to a variable using const, you can’t reassign it to a new value.</li>
         <h4>Printing to the console</h4>
         <p>console.log() - a function in JavaScript which is used to print any kind of variables defined before in it 
           or to just print any message that needs to be displayed to the user.</p>
         <p>Example
-          <li class="code">myName = 'Maria'</li>
-          <li class="code">console.log("My name is ", myName)</li>
+          <pre><code>myName = 'Maria'</code></pre>
+          <pre><code>console.log("My name is ", myName)</code></pre>
           <p>will return to the console:</p>
           <li>My name is Maria</li>
         </p>

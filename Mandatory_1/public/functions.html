@@ -8,7 +8,7 @@
 <body>
     <nav class="top-bar">
         <ul class="title-area">
-            <!-- <img class="image" src="../images/logo.png" alt="node.js"> -->
+            
             <dev class="title">
               <h1>Node.js Documentation</h1>
               <h4>By Maria Ilieva</h4>
@@ -18,37 +18,38 @@
       </nav>
       
       <div class="vertical-menu">
-          <a href="index.html">Home</a>
-          <a href="#">Introduction</a>
-            <ul> 
-              <li><a href="basics.html">Basics</a></li> 
-              <li><a href="strings.html">Strings</a></li> 
-              <li><a href="objects.html">Objects</a></li> 
-              <li><a href="arrays.html">Arrays</a></li> 
-              <li><a href="functions.html">Functions</a></li> 
-            </ul>
-          <a href="#">Build node.js application</a>
-            <ul> 
-              <li><a href="api.html">REST API</a></li>
-              <li><a href="express.html">Express</a></li> 
-              <li><a href="#">npm</a></li> 
-              <li><a href="#">app.js</a></li> 
-            </ul>
-          <a href="#">Link 4</a>
-      </div>
+        <a href="/">Home</a>
+        <p>Introduction</p>
+          <ul> 
+            <li><a href="/basics">Basics</a></li> 
+            <li><a href="/strings">Strings</a></li> 
+            <li><a href="/objects">Objects</a></li> 
+            <li><a href="/arrays">Arrays</a></li> 
+            <li><a href="/functions">Functions</a></li> 
+          </ul>
+        <p>Build node.js application</p>
+          <ul> 
+            <li><a href="/api">REST API</a></li>
+            <li><a href="/express">Express</a></li> 
+            <li><a href="/npm">npm</a></li> 
+            <li><a href="/steps">Steps to build a REST API</a></li> 
+            <li><a href="/jQuery">jQuery</a></li> 
+            <li><a href="/commands">Commands</a></li> 
+          </ul>
+    </div>
 
       <div class="documentation-text">
           <h3>JavaScript Functions</h3>
           <p>A JavaScript function is a block of code designed to perform a particular task.</p>
           <p>A JavaScript function is executed when "something" invokes it (calls it).</p>
           <h4>Syntax:</h4>
-          <li class="code">function name(parameter1, parameter2, parameter3) {<br>
-            // code to be executed <br>
-          }</li>
+          <pre><code>function name(parameter1, parameter2, parameter3) {
+            // code to be executed 
+          }</code></pre>
           <h4>Example:</h4>
-          <li class="code">function myFunction(p1, p2) { <br>
-            return p1 * p2;   // The function returns the product of p1 and p2 <br>
-          }</li>
+          <pre><code>function myFunction(p1, p2) { 
+            return p1 * p2;   // The function returns the product of p1 and p2
+          }</code></pre>
           <h4>Function Invocation</h4>
           <p>The code inside the function will execute when "something" invokes (calls) the function:
               <ul>
@@ -59,22 +60,22 @@
           </p>
           <h4>Function Return</h4>
           <p>When JavaScript reaches a return statement, the function will stop executing.</p>
-          <li class="code">function myFunction(a, b) { <br>
-                return a * b;         // Function returns the product of a and b <br>
-          } <br>
-          var x = myFunction(4, 3);   // Function is called, return value will end up in x</li>
+          <pre><code>function myFunction(a, b) { 
+                return a * b;         // Function returns the product of a and b 
+          } 
+          var x = myFunction(4, 3);   // Function is called, return value will end up in x</code></pre>
           <h4>Arrow Function</h4>
           <p>Arrow functions allow us to write shorter function syntax:</p>
           <p>Before:</p>
-          <li class="code">hello = function() { <br>
-            return "Hello World!"; <br>
-          }</li>
+          <pre><code>hello = function() { 
+            return "Hello World!"; 
+          }</code></pre>
           <p>With Arrow Function:</p>
-          <li class="code">hello = () => { <br>
-            return "Hello World!"; <br>
-          }</li>
+          <pre><code>hello = () => { 
+            return "Hello World!"; 
+          }</code></pre>
           <p>with parameters:</p>
-          <li class="code">hello = (val) => "Hello " + val;</li>
+          <pre><code>hello = (val) => "Hello " + val;</code></pre>
      
       </div>
 

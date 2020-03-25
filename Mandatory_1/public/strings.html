@@ -8,7 +8,7 @@
 <body>
     <nav class="top-bar">
         <ul class="title-area">
-            <!-- <img class="image" src="../images/logo.png" alt="node.js"> -->
+            
             <dev class="title">
               <h1>Node.js Documentation</h1>
               <h4>By Maria Ilieva</h4>
@@ -18,44 +18,43 @@
       </nav>
       
       <div class="vertical-menu">
-          <a href="index.html">Home</a>
-          <a href="#">Introduction</a>
-            <ul> 
-              <li><a href="basics.html">Basics</a></li> 
-              <li><a href="strings.html">Strings</a></li> 
-              <li><a href="objects.html">Objects</a></li> 
-              <li><a href="arrays.html">Arrays</a></li> 
-              <li><a href="functions.html">Functions</a></li> 
-            </ul>
-          <a href="#">Build node.js application</a>
-            <ul> 
-              <li><a href="api.html">REST API</a></li>
-              <li><a href="express.html">Express</a></li> 
-              <li><a href="#">npm</a></li> 
-              <li><a href="#">app.js</a></li> 
-            </ul>
-          <a href="#">Link 4</a>
-      </div>
+        <a href="/">Home</a>
+        <p>Introduction</p>
+          <ul> 
+            <li><a href="/basics">Basics</a></li> 
+            <li><a href="/strings">Strings</a></li> 
+            <li><a href="/objects">Objects</a></li> 
+            <li><a href="/arrays">Arrays</a></li> 
+            <li><a href="/functions">Functions</a></li> 
+          </ul>
+        <p>Build node.js application</p>
+          <ul> 
+            <li><a href="/api">REST API</a></li>
+            <li><a href="/express">Express</a></li> 
+            <li><a href="/npm">npm</a></li> 
+            <li><a href="/steps">Steps to build a REST API</a></li> 
+            <li><a href="/jQuery">jQuery</a></li> 
+            <li><a href="/commands">Commands</a></li> 
+          </ul>
+    </div>
 
       <div class="documentation-text">
         <h3>JavaScript Strings</h3>
         <p>A JavaScript string is zero or more characters written inside quotes.</p>
         <p>JavaScript strings are used for storing and manipulating text.</p>
         <p>Initializing variable with string value:
-            <li class="code">var day = "Sunday"</li>
+            <pre><code>var day = "Sunday"</code></pre>
         </p>
         <h4>Convert Strings to Numbers</h4>
         <ul>
             <li>parseInt()</li>
             <li>parseFloat()</li>
             <li>Number()</li>
-            <p class="code">Number('123'); // returns 123</p>
-            <p class="code">Number('12.3'); // returns 12.3</p>
-            <p class="code">Number('42px'); // returns Not a Number</p>
+            <pre><code>Number('123'); // returns 123</code></pre>
         </ul>
         <h4>String length</h4>
-            <li class="code">var text = "something";</li>
-            <li class="code">var length = text.length;</li>
+            <pre><code>var text = "something";</code></pre>
+            <pre><code>var length = text.length;</code></pre>
         <h4>Escape Characters</h4>
             <ul>
                 <li>\' -> Single quote</li>
@@ -65,30 +64,30 @@
         <h4>Finding a String in a String</h4>
         <p>The indexOf() method returns the index of (the position of) 
             the first occurrence of a specified text in a string:
-        <li class ="code">var str = "Please locate where 'locate' occurs!";</li>
-        <li class="code">var pos = str.indexOf("locate");</li>
+        <li class ="code">var string = "Find string in a string";</li>
+        <pre><code>var pos = str.indexOf("string");</code></pre>
         </p>
         <p>The lastIndexOf() method returns the index of the last occurrence of a specified text in a string:</p>
-        <li class="code">var str = "Please locate where 'locate' occurs!";</li>
-        <li class="code">var pos = str.lastIndexOf("locate");</li>
+        <pre><code>var str = "Find string in a string";</code></pre>
+        <pre><code>var pos = str.lastIndexOf("string");</code></pre>
         <p>Both indexOf(), and lastIndexOf() return -1 if the text is not found.</p>
         <h4>Extracting String Parts</h4>
         <p>There are 3 methods for extracting a part of a string:
-        <li class ="code">slice(start, end)</li>
+        <pre><code>slice(start, end)</code></pre>
         <p>If a parameter is negative, the position is counted from the end </p>
-        <li class="code">substring(start, end)</li>
+        <pre><code>substring(start, end)</code></pre>
         <p>substring() and slice() are similar with the difference that substring() cannot accept negative indexes</p>
-        <li class="code">substr(start, length)</li>
+        <pre><code>substr(start, length)</code></pre>
         </p>
         <h4>Replacing String Content</h4>
         <p>The replace() method replaces a specified value with another value in a string:
-        <li class ="code">"Good morning!"</li>
-        <li class ="code">str.replace("morning", "afternoon");</li>
+        <pre><code>"Good morning!"</code></pre>
+        <pre><code>str.replace("morning", "afternoon");</code></pre>
         <p>By default, the replace() method replaces only the first match:</p>
         <h4>Converting to Upper and Lower Case</h4>
-        <p>A string is converted to upper case with toUpperCase():
-        <li class ="code">var text1 = "Hello World!";</li>
-        <li class ="code">var text2 = text1.toUpperCase();</li>
+        <p>To convert a string to upper case we use toUpperCase():
+        <pre><code>var text1 = "Hello World!";</code></pre>
+        <pre><code>var text2 = text1.toUpperCase();</code></pre>
         <p>A string is converted to lower case with toLowerCase()</p>
         <h4>Some more methods:</h4>
             <ul>

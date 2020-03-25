@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Maria's documentation</title>
+    <style type="text/css">
+        .vertical-menu a:hover {
+          background-color: #ccc;
+        } 
+    </style>
+</head>
+<body>
+    <nav class="top-bar">
+      <ul class="title-area">
+          <dev class="title">
+            <h1>Node.js Documentation</h1>
+            <h4>By Maria Ilieva</h4>
+            <h4>Computer Science, KEA</h4>
+         </dev>
+      </ul>
+    </nav>
+    
+    <div class="vertical-menu">
+        <a href="/">Home</a>
+        <p>Introduction</p>
+          <ul> 
+            <li><a href="/basics">Basics</a></li> 
+            <li><a href="/strings">Strings</a></li> 
+            <li><a href="/objects">Objects</a></li> 
+            <li><a href="/arrays">Arrays</a></li> 
+            <li><a href="/functions">Functions</a></li> 
+          </ul>
+        <p>Build node.js application</p>
+          <ul> 
+            <li><a href="/api">REST API</a></li>
+            <li><a href="/express">Express</a></li> 
+            <li><a href="/npm">npm</a></li> 
+            <li><a href="/steps">Steps to build a REST API</a></li> 
+            <li><a href="/jQuery">jQuery</a></li> 
+            <li><a href="/commands">Commands</a></li> 
+          </ul>
+    </div>
+    <div class="documentation-text">
+      <h3>What is jQuery?</h3>
+      <p>JQuery is a lightweight JavaScript library that makes it much more easier to use JavaScript on our web application
+          Some functions require many lines of code in JavaScript but with jQuery these lines are wrapped together in a method
+          that can be called with a single line of code. 
+      </p>
+      <p>jQuery also simplifies a lot of the complicated things from JavaScript.</p>
+      <p>The jQuery library contains the following features:</p>
+      <ul>
+          <li>HTML/DOM manipulation</li>
+          <li>CSS manipulation</li>
+          <li>HTML event methods</li>
+          <li>Effects and animations</li>
+          <li>AJAX</li>
+      </ul>
+
+      <h4>Using jQuery</h4>
+      <p>In order to use jQuery we need to first either install it or include it from a CDN (Content Delivery Network). </p>
+      <p>We should go to <a target="_blank" href="https://developers.google.com/speed/libraries">Google Hosted Libraries</a>
+       and copy the current jquery version script.</p>
+      <p>We then paste the script in the html file. The script tag should be either at the end of the body or 
+        inside the head section.</p>
+      <h4>jQuery syntax:</h4>
+      <pre><code>$(selector).action()</code></pre>
+      <p>The selector is a html element and the action is what we want to do with the element</p>
+      <p>Example:</p>
+      <pre><code>$("a").hide() // hides all a elements.</code></pre>
+      <h4>The document ready event</h4>
+      <p>We put our methods in a document ready event in order to have our jQueties after the page has loaded.</p>
+      <pre><code>$(document).ready(function(){ 
+        // jQuery methods go here 
+      });</code></pre>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

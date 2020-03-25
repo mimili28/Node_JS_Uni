@@ -14,7 +14,7 @@
 <body>
     <nav class="top-bar">
       <ul class="title-area">
-          <!-- <img class="image" src="http://localhost:3000/images/logo.png" alt="node.js"> -->
+          
           <dev class="title">
             <h1>Node.js Documentation</h1>
             <h4>By Maria Ilieva</h4>
@@ -24,24 +24,25 @@
     </nav>
     
     <div class="vertical-menu">
-        <a href="index.html" class="active">Home</a>
-        <a href="#">Introduction</a>
-          <ul> 
-            <li><a href="basics.html">Basics</a></li> 
-            <li><a href="strings.html">Strings</a></li> 
-            <li><a href="objects.html">Objects</a></li> 
-            <li><a href="arrays.html">Arrays</a></li> 
-            <li><a href="functions.html">Functions</a></li> 
-          </ul>
-        <a href="#">Build node.js application</a>
-          <ul> 
-            <li><a href="api.html">REST API</a></li>
-            <li><a href="express.html">Express</a></li> 
-            <li><a href="npm.html">npm</a></li> 
-            <li><a href="#">Steps to build a REST API</a></li> 
-          </ul>
-        <a href="#">Link 4</a> 
-    </div>
+      <a href="/">Home</a>
+      <p>Introduction</p>
+        <ul> 
+          <li><a href="/basics">Basics</a></li> 
+          <li><a href="/strings">Strings</a></li> 
+          <li><a href="/objects">Objects</a></li> 
+          <li><a href="/arrays">Arrays</a></li> 
+          <li><a href="/functions">Functions</a></li> 
+        </ul>
+      <p>Build node.js application</p>
+        <ul> 
+          <li><a href="/api">REST API</a></li>
+          <li><a href="/express">Express</a></li> 
+          <li><a href="/npm">npm</a></li> 
+          <li><a href="/steps">Steps to build a REST API</a></li> 
+          <li><a href="/jQuery">jQuery</a></li> 
+          <li><a href="/commands">Commands</a></li> 
+        </ul>
+  </div>
     <div class="documentation-text">
       <h3>How to create our API:</h3>
       <h4>1. We need to create the package.json file</h4>
@@ -52,19 +53,37 @@
       </p>
       <h4>3. Create our .js file(app.js)</h4>
       <p>Now in the app.js file we need to import the express package:</p>
-      <li class="code">const express= require("express"); <br>
-        const app=express();</li>
+      <pre><code>const express= require("express"); 
+        const app=express();</code></pre>
       <p>or in one line:</p>
-      <li class="code">const app= require("express")();</li>
+      <pre><code>const app= require("express")();</code></pre>
       <h4>4. Finally we have to connect to the server:</h4>
-      <li class="code">app.listen(3000)</li>
+      <pre><code>app.listen(3000)</code></pre>
       <p>This means that our program will run on port 3000</p>
       <p>After we have created the foundations of our web application we can start impelementing different functionalities</p>
       <h4>REST API operations</h4>
       <p>Now we need to connect routes to http methods in order to be be able to see something in our web application</p>
+      <h4>Routing</h4>
       <p>GET</p>
       <p>We use app.get() method to get requests</p>
-
+      <p>Example:</p>
+      <pre><code>app.get("/hello", (req, res) => { //req is for request object and res for response object
+        res.send({message: "Hello there"}); 
+      });</code></pre>
+      <p>What these line of code mean is that when we go to route "localhost:3000/hello" we will see a message "Hello there"</p>
+      <p>res.send() is a response method for sending a response of various type. It is the last line of code we should have in our method, 
+        if there are lines after it they will simply not run</p>
+      <h4>Route parameters</h4>
+      <p>Route parameters are URL segments used to capture the values that are specified at their position in the URL. 
+        The captured values are populated in the req.params object, 
+        with the name of the route parameter specified in the path as their respective keys.</p>
+      <pre><code>app.get("/user/:id",(req,res) => { 
+        return res.send({id: req.params.id}); 
+      });</code></pre>
+      <p>In this case the route parameter is "id"</p>
+      <p>Route path: /user/:userId</p>
+      <p>Request URL: http://localhost:3000/user/5</p>
+      <p>req.params: { "userId": "5" }</p>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="index.js"></script>
