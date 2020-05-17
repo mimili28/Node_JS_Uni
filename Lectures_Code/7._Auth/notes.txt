@@ -1,0 +1,13 @@
+ORM
+
+DDL(DATA DEFFINITION LANGUAGE):
+CREATE, DROP, ALTER
+
+DML(DATA MANIPULATION LANGUAGE):
+SELECT, UPDATE, INSERT
+
+Migrations:
+- Database Migrations (happens over time) -> DDL - @Entity based
+   - why is it good to have it in a project -> 
+- Data Migrations -> DML (and sometimes database structure, DDL)
+
