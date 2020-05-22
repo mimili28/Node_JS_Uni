@@ -1,5 +1,6 @@
 // event loop - not a seperate thread, main thread, takes care of all events 
 
+//worker threads - by default there is only main thread but you can make in node small threads
 // open a file, read/write, make a request online, interact with a db 
 //- best to do it in a async way
 

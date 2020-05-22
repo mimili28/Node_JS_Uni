@@ -1,0 +1,26 @@
+<%- include ('../navbar/navbar') %>
+    <div id="register">
+        <div class="container">
+            <form id="signup-form" class="form" action="" method="post">
+                <h3 class="text-center text-info">Sign Up</h3>
+                <div class="form-group">
+                    <label for="username" class="text-info">Username:</label><br>
+                    <input type="text" name="username" id="username" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="text-info">Password:</label><br>
+                    <input type="password" name="password" id="password" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="passwordRepeat" class="text-info">Repeat password:</label><br>
+                    <input type="password" name="passwordRepeat" id="passwordRepeat" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <input type="submit" name="submit" id="submit" class="btn btn-info btn-md" value="submit">
+                </div>
+            </form>
+        </div>
+
+    </div> 
+    <%- include ('../footer/footer') %>
+    

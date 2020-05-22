@@ -1,9 +1,9 @@
 const {Model} = require('objection');
 
-const Role = require('./Role.js');
+const User = require('./User.js');
 
-class User extends Model{
-    static tableName = 'users';
+class Role extends Model{
+    static tableName = 'roles';
 
     //same as above
     // static get tableName(){
@@ -12,15 +12,15 @@ class User extends Model{
 
     static relationMappings = {
         role: { //the key that is the name for the relation
-            relation: Model.BelongsToOneRelation,
-            modelClass: Role,
+            relation: Model.HasManyRelation,
+            modelClass: User,
             join: {
-                from: 'users.roleId',
-                to: 'roles.id'
+                from: 'roles.id',
+                to: 'users.roleId'
             }
         }
     };
 
 }
 
-module.exports = User;
+module.exports = Role;
