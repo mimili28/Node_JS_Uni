@@ -11,6 +11,7 @@ app.use(express.json());
 
 app.use(express.static('public'));
 
+
 const fs = require('fs');
 
 const loginpage = fs.readFileSync("views/loginpage/login.ejs", "utf8");
@@ -63,6 +64,16 @@ app.use("/signup", limiter);
     }
     next()
     })
+
+app.use(function (req, res, next) {
+    if(req.session.isAdmin){
+        
+         res.locals.isAdmin = req.session.isAdmin;
+    } else{
+         res.locals.isAdmin = null;
+    }
+    next()
+})
 
 
 // Setup Objection + Knex

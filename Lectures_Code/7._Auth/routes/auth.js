@@ -19,6 +19,7 @@ route.post("/login", async (req,res) => {
 
     const { username, password } = req.body;
   
+    const adminRole = await Role.query().select().where({role: 'ADMIN'});
 
     if(username && password){
             try{
@@ -30,19 +31,24 @@ route.post("/login", async (req,res) => {
                             }
                             if(isMatch){
                                 req.session.user = user;
+                                if(adminRole[0].id == user[0].roleId){
+                                    req.session.isAdmin = true;
+                                }
+                               
                                 // res.locals.loggedIn = user;
                                 // console.log(res.locals.loggedIn)
                                 //res.render('profilepage/profile', { username: user[0].username })
-                                res.redirect("/profile");
+                                res.redirect("/");
                             }
                             else{
-                                res.locals.wrong = true;
-                                req.flash('errorMessage', 'Wrong username or password');
+                                
+                                res.send(req.flash('errorMessage', 'Wrong username or password'));
                                 res.redirect('/login');
                             }
                         });
                     }else {
-                        return res.send({response: "Wrong username or password"});
+                        //return res.send(req.flash('errorMessage', 'Wrong username or password'));
+                        res.redirect('/login');
                     }
                 
             }catch(error){
@@ -50,7 +56,8 @@ route.post("/login", async (req,res) => {
             }
 
     }else {
-        return res.status(404).send({response:"Missing fields: username, password"})
+        //return res.status(404).send({response:"Missing fields: username, password"})
+        res.redirect('/login');
     }
         
 });
@@ -84,7 +91,8 @@ route.post("/signup", async (req,res) => {
                          roleId: defaultUserRoles[0].id
                      });
 
-                    return res.send({response: `User has been created with username: ${createdUser.username}`});
+                    //return res.send({response: `User has been created with username: ${createdUser.username}`});
+                    res.redirect('/login');
                  }
                 
             }catch (error){
@@ -93,9 +101,11 @@ route.post("/signup", async (req,res) => {
             }
         }
     }else if (password && passwordRepeat && !isPasswordTheSame) {
-        return res.status(400).send({response:"Password do not match. Fields:password and passwordRepeat"})
+        //return res.status(400).send({response:"Password do not match. Fields:password and passwordRepeat"})
+        res.redirect('/signup');
     }else {
-        return res.status(404).send({response:"Missing fields: username, password, passwordRepeat"})
+        //return res.status(404).send({response:"Missing fields: username, password, passwordRepeat"})
+        res.redirect('/signup');
     }
     
 });
@@ -115,6 +125,14 @@ route.get("/login", (req, res) => {
 
  route.get("/signup", (req, res) => {
     return res.render('signuppage/signup');
+ });
+
+ route.get("/admin", (req, res) => {
+    if(req.session.isAdmin) {
+        return res.render('admin/admin');
+    }else{
+        return res.redirect("/login");
+    }
  });
 
 route.get("/profile", async (req, res) => {
