@@ -32,6 +32,8 @@ app.use(session({
 const flash = require('req-flash');
 app.use(flash());
 
+const nodemailer = require('nodemailer');
+
 
 const rateLimit = require("express-rate-limit");
 const limiter = rateLimit({
@@ -75,6 +77,24 @@ app.use(function (req, res, next) {
     next()
 })
 
+// app.use(function (req, res, next) {
+//     if(req.session.loginMessage){
+//          res.locals.loginMessage = req.session.loginMessage;
+//     } else{
+//          res.locals.loginMessage = null;
+//     }
+//     next()
+// })
+
+// app.use(function (req, res, next) {
+//     if(req.session.signupMessage){
+//          res.locals.signupMessage = req.session.signupMessage;
+//     } else{
+//          res.locals.signupMessage = null;
+//     }
+//     next()
+// })
+
 
 // Setup Objection + Knex
 const {Model} = require('objection'); //import objection library
@@ -116,6 +136,7 @@ const usersRoute = require('./routes/users.js');
 
 app.use(authRoute);
 app.use(usersRoute);
+
 
 
 //start server

@@ -1,5 +1,27 @@
 <%- include ('../navbar/navbar') %>
-<div>
-    
+<div class="centered-table">
+        <div class="panel panel-primary">
+            <div>
+                <div class="panel-heading">
+                    <h3 class="panel-title">Users</h3>
+                </div>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Username</th>
+                            <th>Created At</th>               
+                        </tr>
+                    </thead>
+                    <% for(var i=0; i < users.length; i++) { %>
+                    <tr>
+                        <td><%= i +1 %></td>
+                        <td><%= users[i].username %></td>
+                        <td><%= users[i].createdAt %></td>
+                    </tr>
+                    <% } %>
+                    </table>
+            </div>
+        </div>
 </div>
 <%- include ('../footer/footer') %>

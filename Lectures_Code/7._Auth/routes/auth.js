@@ -6,49 +6,34 @@ const Role = require('../models/Role.js');
 const bcrypt = require('bcrypt');
 const saltRounds = 12;
 
-//const session = require('express-session');
+const sendEmail = require("../nodemail")
 
 route.post("/login", async (req,res) => {
-    //sess = req.session;
-    // 1. retrieve the login details and values
-    // 2. check for a user match in the db
-    // 3. bcrypt compare
-    // 4. sessions
-
-    
-
+  
     const { username, password } = req.body;
   
     const adminRole = await Role.query().select().where({role: 'ADMIN'});
+    const users = await User.query().select();
 
     if(username && password){
             try{
                 const user = await User.query().select().where({'username': username}).limit(1);
                     if(user.length>0){
-                        bcrypt.compare(password, user[0].password, function(err, isMatch) {
-                            if(err){
-                                //return callback(err);
-                            }
+                        bcrypt.compare(password, user[0].password).then(function(isMatch) {
                             if(isMatch){
                                 req.session.user = user;
                                 if(adminRole[0].id == user[0].roleId){
                                     req.session.isAdmin = true;
+                                    req.session.users = users;  
                                 }
-                               
-                                // res.locals.loggedIn = user;
-                                // console.log(res.locals.loggedIn)
-                                //res.render('profilepage/profile', { username: user[0].username })
                                 res.redirect("/");
                             }
                             else{
-                                
-                                res.send(req.flash('errorMessage', 'Wrong username or password'));
-                                res.redirect('/login');
+                                res.render('loginpage/login', {message: "Wrong username or password"});
                             }
                         });
                     }else {
-                        //return res.send(req.flash('errorMessage', 'Wrong username or password'));
-                        res.redirect('/login');
+                        res.render('loginpage/login', {message: "Wrong username or password"});
                     }
                 
             }catch(error){
@@ -56,8 +41,8 @@ route.post("/login", async (req,res) => {
             }
 
     }else {
-        //return res.status(404).send({response:"Missing fields: username, password"})
-        res.redirect('/login');
+        res.render('loginpage/login', {message: "Missing fields: username, password"});
+    
     }
         
 });
@@ -65,19 +50,20 @@ route.post("/login", async (req,res) => {
 
 route.post("/signup", async (req,res) => {
    
-    const { username, password, passwordRepeat } = req.body;
+    const { username, password, passwordRepeat, email } = req.body;
 
     const isPasswordTheSame = password === passwordRepeat;
 
     if(username && password && isPasswordTheSame){
         if(password.length < 8){
-            return res.status(400).send({response:"Password does not fulfill the requirements"}) 
+            res.render('signuppage/signup', {message: "Password does not fulful the requirements.(Minimum 8 characters)"});
         }else{
             try{
                  const userFound = await User.query().select().where({'username': username}).limit(1);
                  //limit- stops after it has been satisfied -> performancy efficient
                  if(userFound.length > 0){
-                     return res.status(400).send({response: "User already exists"});
+                     res.render('signuppage/signup', {message: "Username already exists"});
+                     
                  }else{
                      
                      const defaultUserRoles = await Role.query().select().where({role: 'USER'});
@@ -90,9 +76,13 @@ route.post("/signup", async (req,res) => {
                          password: hashedPassword,
                          roleId: defaultUserRoles[0].id
                      });
+                     
+                     sendEmail(email,"Account created", " your account at NodeAuth has been succesfully created");
 
+
+                    res.render('loginpage/login', {message: "User has been created successfully"});
                     //return res.send({response: `User has been created with username: ${createdUser.username}`});
-                    res.redirect('/login');
+                    // res.redirect('/login');
                  }
                 
             }catch (error){
@@ -101,11 +91,9 @@ route.post("/signup", async (req,res) => {
             }
         }
     }else if (password && passwordRepeat && !isPasswordTheSame) {
-        //return res.status(400).send({response:"Password do not match. Fields:password and passwordRepeat"})
-        res.redirect('/signup');
+        res.render('signuppage/signup', {message: "Password and Repeat password does not match"});
     }else {
-        //return res.status(404).send({response:"Missing fields: username, password, passwordRepeat"})
-        res.redirect('/signup');
+        res.render('signuppage/signup', {message: "Missing fields: username, password, passwordRepeat"});
     }
     
 });
@@ -129,7 +117,7 @@ route.get("/login", (req, res) => {
 
  route.get("/admin", (req, res) => {
     if(req.session.isAdmin) {
-        return res.render('admin/admin');
+        return res.render('admin/admin', {users: req.session.users});
     }else{
         return res.redirect("/login");
     }

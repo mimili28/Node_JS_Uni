@@ -5,6 +5,8 @@
 }
 #main-content {
      padding-top: 50px;
+     margin-left: auto;
+     margin-right:auto;
 }
 #submit{
     width: 100px;
@@ -12,16 +14,48 @@
     margin-left: auto;
     margin-right:auto;
 }
-#register-link{
+.link-redirect{
     text-align: center;
 }
-#avatar{
+.image-centered{
     margin-top: 70px;
     display: block;
     margin-left: auto;
     margin-right:auto;
 }
 .large-centered{
+    margin-top: 50px;
     text-align: center;
     font-size: x-large;
+}
+
+.panel-heading{
+    background-color: #428bca;
+}
+
+.centered-table{
+    display: block;
+    padding-top: 50px;
+    padding-right: 250px;
+    padding-left: 250px;
+    margin-left: auto;
+    margin-right:auto;
+}
+
+.error{
+    color: #D8000C;
+    background-color: #FFD2D2;
+    margin: 10px 0px;
+    padding:12px;
+}
+
+#copyright-paragraph {
+    font-size: 0.8em;
+
+}
+footer{
+    height: 40px;
+    position: fixed;
+    bottom: 0;
+    left: 40px;
 }
