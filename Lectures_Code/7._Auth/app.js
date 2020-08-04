@@ -1,24 +1,17 @@
 const express = require('express');
 const app = express();
 
-
-//const ejs = require('ejs');
 app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({ extended: false }));
-
 app.use(express.json());
 
 app.use(express.static('public'));
 
-
 const fs = require('fs');
 
 const loginpage = fs.readFileSync("views/loginpage/login.ejs", "utf8");
-const signuppage = fs.readFileSync("views/signuppage/signup.ejs", "utf8");
-const profilepage = fs.readFileSync("views/profilepage/profile.ejs", "utf8");
-// const navbar = fs.readFileSync("views/navbar/navbar.ejs", "utf8");
-// const footer = fs.readFileSync("views/footer/footer.ejs", "utf8");
+
 //for authorization
 const session = require('express-session');
 app.use(session({
@@ -34,7 +27,6 @@ app.use(flash());
 
 const nodemailer = require('nodemailer');
 
-
 const rateLimit = require("express-rate-limit");
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, //15 minutes
@@ -43,22 +35,8 @@ const limiter = rateLimit({
 app.use("/login", limiter);
 app.use("/signup", limiter);
 
-// app.get("/", (req, res) => {
-//     return res.send(navbar + footer);
-//  });
 
-// app.get("/login", (req, res) => {
-//     return res.send(loginpage);
-//  });
-// app.get("/signup", (req, res) => {
-//     return res.send(signuppage);
-//  });
-
- app.post("/logout", (req, res) => {
-    return res.send(loginpage);
- });
-
- app.use(function (req, res, next) {
+app.use(function (req, res, next) {
     if(req.session.user){
          res.locals.loggedIn = req.session.user;
     } else{
@@ -76,25 +54,6 @@ app.use(function (req, res, next) {
     }
     next()
 })
-
-// app.use(function (req, res, next) {
-//     if(req.session.loginMessage){
-//          res.locals.loginMessage = req.session.loginMessage;
-//     } else{
-//          res.locals.loginMessage = null;
-//     }
-//     next()
-// })
-
-// app.use(function (req, res, next) {
-//     if(req.session.signupMessage){
-//          res.locals.signupMessage = req.session.signupMessage;
-//     } else{
-//          res.locals.signupMessage = null;
-//     }
-//     next()
-// })
-
 
 // Setup Objection + Knex
 const {Model} = require('objection'); //import objection library
@@ -137,7 +96,17 @@ const usersRoute = require('./routes/users.js');
 app.use(authRoute);
 app.use(usersRoute);
 
+app.get("/login", (req, res) => {
+    return res.render('loginpage/login');
+ });
 
+app.get("/signup", (req, res) => {
+    return res.render('signuppage/signup');
+ });
+
+ app.post("/logout", (req, res) => {
+    return res.send(loginpage);
+ });
 
 //start server
 const PORT = 3000;

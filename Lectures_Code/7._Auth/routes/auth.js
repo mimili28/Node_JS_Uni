@@ -80,9 +80,8 @@ route.post("/signup", async (req,res) => {
                      sendEmail(email,"Account created", " your account at NodeAuth has been succesfully created");
 
 
-                    res.render('loginpage/login', {message: "User has been created successfully"});
-                    //return res.send({response: `User has been created with username: ${createdUser.username}`});
-                    // res.redirect('/login');
+                   // res.render('loginpage/login', {success: "User has been created successfully"});
+                   res.redirect("/login")
                  }
                 
             }catch (error){
@@ -107,13 +106,6 @@ route.get("/logout", (req,res) => {
         res.redirect('/login');
     });
 });
-route.get("/login", (req, res) => {
-    return res.render('loginpage/login');
- });
-
- route.get("/signup", (req, res) => {
-    return res.render('signuppage/signup');
- });
 
  route.get("/admin", (req, res) => {
     if(req.session.isAdmin) {

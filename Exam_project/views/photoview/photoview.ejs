@@ -1,0 +1,33 @@
+<%- include ('../navbar/navbar') %>
+<script>
+    const fullUrl = window.location.href;
+    const photoId = fullUrl.substr(fullUrl.lastIndexOf("/") + 1);
+
+    $(document).ready(() => {
+        $.get(`/photos/${photoId}`, photo => {
+            console.log(photo[0])
+            const image = document.createElement('img');
+            const description = document.createElement('p');
+            const tags = document.createElement('p');
+            const link = document.createElement('a');
+            image.src = `../../${photoId}`;
+            description.textContent= "Description: " + photo[0].description;
+            tags.textContent= "Tags: " + photo[0].tags;
+            link.href = `/delete/${photo[0].filename}`;
+            link.textContent = "Delete";
+            document.getElementsByClassName('thumbnail')[0].appendChild(image);
+            document.getElementsByClassName('thumbnail')[0].append(description);
+            document.getElementsByClassName('thumbnail')[0].append(tags);
+            document.getElementsByClassName('thumbnail')[0].append(link);
+            
+        }).fail(function (error) {
+          console.log(error)
+      });
+    });
+
+</script>
+<div class = page-content>
+    <div class = "thumbnail">
+    </div>
+</div>
+<%- include ('../footer/footer') %>

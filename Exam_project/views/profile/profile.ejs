@@ -1,0 +1,40 @@
+<%- include ('../navbar/navbar') %>
+<script>
+    $(document).ready(() => {
+    $.get("/logged-user", details => {
+        $('#username').html(details.username)
+      }).fail(function (error) {
+          console.log(error)
+      })
+    });
+
+    $(document).ready(() => {
+    $.get("/profile-photos", elements => {
+        for(i=0; i < elements.length; i++){
+            const div1= document.createElement('div');
+            const image = document.createElement('img');
+            const link = document.createElement('a');
+            image.src = '../../' + elements[i].filename;
+            image.className = "img-square img-fluid img-thumbnail";
+            div1.className="col-lg-6 col-md-4";
+            link.href = `/profile/${elements[i].filename}`;
+            link.className = "d-block mb-4 h-100";
+            document.getElementById("myPhotos").appendChild(div1).appendChild(link).appendChild(image);
+        }
+      }).fail(function (error) {
+          console.log(error)
+      })
+    });
+</script>
+<div class="profile page-content">
+    <div>
+        <img class="image-centered" src="../../images/avatar.jpg" alt="avatar" width="100" height="100">
+        <p class="text-info large-centered" id="username"></p>
+    </div>
+    <div >
+        <div id="myPhotos" class="row text-center text-lg-left">
+
+        </div>
+    </div>
+</div>
+<%- include ('../footer/footer') %>

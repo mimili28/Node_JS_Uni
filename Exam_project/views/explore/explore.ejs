@@ -1,0 +1,33 @@
+<%- include ('../navbar/navbar') %>
+<script>
+    $(document).ready(() => {
+    $.get("/photos", elements => {
+        for(i=0; i < elements.length; i++){
+            const image = document.createElement('img');
+            const div1 = document.createElement('div');
+            const username = document.createElement('p');
+            const description = document.createElement('p');
+            const tags = document.createElement('p');
+            image.src = '../../' + elements[i].filename;
+            image.className = "img-vertical-centered";
+            div1.className = "thumbnail";
+            username.textContent = elements[i].username;
+            description.textContent= "Description: " + elements[i].description;
+            tags.textContent= "Tags: " + elements[i].tags;
+            document.getElementById("photos").append(div1);
+            document.getElementsByClassName('thumbnail')[i].append(username);
+            document.getElementsByClassName('thumbnail')[i].appendChild(image);
+            document.getElementsByClassName('thumbnail')[i].append(description);
+            document.getElementsByClassName('thumbnail')[i].append(tags);
+        }
+      }).fail(function (error) {
+          console.log(error)
+      })
+    });
+</script>
+
+<div class="page-content">
+    <div id="photos"></div>
+</div>
+
+<%- include ('../footer/footer') %>

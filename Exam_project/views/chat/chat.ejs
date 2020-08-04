@@ -1,0 +1,19 @@
+<%- include ('../navbar/navbar') %>
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="./chat.js"></script>
+<div class="container-flude page-content">
+  <div class="msg-group form-group">
+    <div class="card" id="chatroom">
+         <div class="card-body" >
+             <h6 class="card-subtitle mb-2 text-muted text-left" id="feedback"></h6>
+         </div>
+    </div>
+  </div>
+  <div class="input-group form-group" id="input_zone">
+    <textarea id="message" class="form-control" rows="1" placeholder="Say something..."></textarea>
+      <span class="input-group-btn">
+          <button id="send_message" class="btn btn-secondary" type="button">Send</button>
+      </span>
+ </div>
+</div>
+<%- include ('../footer/footer') %>
