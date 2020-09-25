@@ -6,6 +6,8 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+const flash = require('connect-flash');
+app.use(flash());
 
 // Objection and Knex
 
@@ -80,28 +82,50 @@ app.use(authRoute);
 app.use(photosRoute);
 app.use(profileRoute);
 
+const navbarPage = fs.readFileSync("public/navbar/navbar.html", "utf8");
+const loginPage = fs.readFileSync("public/login/login.html", "utf8");
+const signupPage = fs.readFileSync("public/signup/signup.html", "utf8");
+const explorePage = fs.readFileSync("public/explore/explore.html", "utf8");
+const chatPage = fs.readFileSync("public/chat/chat.html", "utf8");
+const footerPage = fs.readFileSync("public/footer/footer.html", "utf8");
+const profilePage = fs.readFileSync("public/profile/profile.html", "utf8");
+const photoviewPage = fs.readFileSync("public/photoview/photoview.html", "utf8");
+const uploadPage = fs.readFileSync("public/upload/upload.html", "utf8");
+
+app.get("/status", (req, res) => {
+    if(req.session.user){
+        return res.status(200).send("user");
+    }else{
+        return res.status(200).send("anonymous");
+    }
+});
+
 app.get("/login", (req, res) => {
-    return res.render("login/login");
+    return res.send(navbarPage + loginPage + footerPage);
 });
 
 app.get("/signup", (req, res) => {
-    return res.render("signup/signup");
+    return res.send(navbarPage + signupPage + footerPage);
 }); 
 
 app.get("/upload", requireLogin, (req, res) => {
-    return res.render("upload/upload");
+    return res.send(navbarPage + uploadPage + footerPage);
 }); 
 
 app.get("/", (req,res) => {
-    return res.render("explore/explore");
+    return res.send(navbarPage + explorePage + footerPage);
 });
 
 app.get("/chat", requireLogin, (req,res) => {
-    return res.render("chat/chat");
+    return res.send(navbarPage + chatPage + footerPage);
+});
+
+app.get("/profile", requireLogin, (req,res) => {
+    return res.send(navbarPage + profilePage + footerPage);
 });
 
 app.get("/profile/:photoId", (req, res) => {
-    return res.render("photoview/photoview");
+    return res.send(navbarPage + photoviewPage + footerPage);
 });
 const PORT = 3000;
 

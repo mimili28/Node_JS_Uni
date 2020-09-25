@@ -13,7 +13,7 @@ const requireLogin = (req, res, next) => {
 }
 
 router.get("/logged-user", requireLogin, async (req, res) => {
-    return  res.status(200).json(req.session.user[0]);
+    return res.status(200).json(req.session.user[0]);
 }); 
 
 router.get("/profile-photos", requireLogin, async (req, res) => {
@@ -22,8 +22,6 @@ router.get("/profile-photos", requireLogin, async (req, res) => {
     return res.status(200).json(userPhotos);
 });
 
-router.get("/profile", requireLogin, (req,res) => {
-    return res.render('profile/profile');
-});
+
 
 module.exports = router;

@@ -20,11 +20,11 @@ route.post("/login", async (req,res) => {
                             res.redirect("/profile");
                         }
                         else{
-                            res.render('login/login', {message: "Wrong username or password"});
+                            return res.status(400).redirect('/login?error');
                         }
                     });
                 }else {
-                    res.render('login/login', {message: "Wrong username or password"});
+                    return res.status(400).redirect('/login?error');
                 }
             
         }catch(error){
@@ -32,7 +32,7 @@ route.post("/login", async (req,res) => {
         }
 
     }else {
-        res.render('login/login', {message: "Missing fields: username, password"});
+        return res.status(400).redirect('/login?error');
     }
 });
 
@@ -44,12 +44,14 @@ route.post("/signup", async (req,res) => {
 
     if(username && password && isPasswordTheSame){
         if(password.length < 8){
-            res.render('signup/signup', {message: "Password does not fulful the requirements.(Minimum 8 characters)"});
+            //res.render('signup/signup', {message: "Password does not fulful the requirements.(Minimum 8 characters)"});
+            res.redirect("/signup");
         }else{
             try{
                  const userFound = await User.query().select().where({'username': username}).limit(1);
                  if(userFound.length > 0){
-                     res.render('signup/signup', {message: "Username already exists"});
+                     //res.render('signup/signup', {message: "Username already exists"});
+                     res.redirect('/signup');
                      
                  }else{
                      
@@ -63,7 +65,8 @@ route.post("/signup", async (req,res) => {
                      //sendEmail(email,"Account created", " your account at NodeAuth has been succesfully created");
 
 
-                   res.render('login/login', {success: "User has been created successfully"});
+                   //res.render('login/login', {success: "User has been created successfully"});
+                   res.redirect("/login");
                  }
                 
             }catch (error){
@@ -72,9 +75,11 @@ route.post("/signup", async (req,res) => {
             }
         }
     }else if (password && passwordRepeat && !isPasswordTheSame) {
-        res.render('signup/signup', {message: "Password and Repeat password does not match"});
+        //res.render('signup/signup', {message: "Password and Repeat password does not match"});
+        res.redirect('/signup');
     }else {
-        res.render('signup/signup', {message: "Missing fields: username, password, passwordRepeat"});
+        //res.render('signup/signup', {message: "Missing fields: username, password, passwordRepeat"});
+        res.redirect('/signup');
     }
     
 });
