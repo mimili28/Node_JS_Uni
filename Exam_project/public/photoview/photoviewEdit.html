@@ -1,0 +1,42 @@
+<script>
+    const fullUrl = window.location.href;
+    const photoId = fullUrl.substr(fullUrl.lastIndexOf("/") + 1);
+
+    $(document).ready(() => {
+        $.get(`/photos/${photoId}`, photo => {
+            const form = document.createElement('form');
+            form.action = `/edit/${photoId}`;
+            form.method = 'POST';
+            const image = document.createElement('img');
+            const description = document.createElement('p');
+            description.textContent = "Description: "
+            const descriptionText = document.createElement('input');
+            descriptionText.name = "description";
+            descriptionText.style = 'width:100%';
+            descriptionText.value= photo[0].description;
+            const tags = document.createElement('p');
+            tags.textContent = "Tags: "
+            const tagsText = document.createElement('input');
+            tagsText.name = "tags";
+            tagsText.style = 'width:100%';
+            tagsText.value = photo[0].tags;
+            image.src = `../../${photoId}`;
+            const saveButton = document.createElement('button');
+            saveButton.type = "submit";
+            saveButton.textContent = "Save";
+            form.className = "thumbnail";
+            form.appendChild(image);
+            form.append(description);
+            form.append(descriptionText);
+            form.append(tags);
+            form.append(tagsText);
+            form.append(saveButton);
+            document.getElementsByClassName('page-content')[0].appendChild(form);  
+        }).fail(function (error) {
+          console.log(error)
+      });
+    });
+
+</script>
+<div class = page-content>       
+</div>

@@ -12,7 +12,7 @@ $(function(){
 	const chatroom = $("#chatroom");
 	const feedback = $("#feedback");
     
-	send_message.click(function(){
+	send_message.on("click", function(){
 		socket.emit('new_message', {message : message.val()});
     })
 
@@ -22,7 +22,7 @@ $(function(){
 		chatroom.append("<p class='message'>" + data.username + ": " + data.message + "</p>");
 	})
 	
-	message.bind("keypress", () => {
+	message.on("keypress", () => {
 		socket.emit('typing')
 	})
 

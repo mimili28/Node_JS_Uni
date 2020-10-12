@@ -44,14 +44,12 @@ route.post("/signup", async (req,res) => {
 
     if(username && password && isPasswordTheSame){
         if(password.length < 8){
-            //res.render('signup/signup', {message: "Password does not fulful the requirements.(Minimum 8 characters)"});
-            res.redirect("/signup");
+            return res.status(400).redirect('/signup?error?password');
         }else{
             try{
                  const userFound = await User.query().select().where({'username': username}).limit(1);
                  if(userFound.length > 0){
-                     //res.render('signup/signup', {message: "Username already exists"});
-                     res.redirect('/signup');
+                     return res.status(400).redirect('/signup?error?username?exists');
                      
                  }else{
                      
@@ -75,11 +73,9 @@ route.post("/signup", async (req,res) => {
             }
         }
     }else if (password && passwordRepeat && !isPasswordTheSame) {
-        //res.render('signup/signup', {message: "Password and Repeat password does not match"});
-        res.redirect('/signup');
+        return res.status(400).redirect('/signup?error?password?not?match');
     }else {
-        //res.render('signup/signup', {message: "Missing fields: username, password, passwordRepeat"});
-        res.redirect('/signup');
+        return res.status(400).redirect('/signup?error?missing?fields');
     }
     
 });

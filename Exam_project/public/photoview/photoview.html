@@ -8,16 +8,20 @@
             const image = document.createElement('img');
             const description = document.createElement('p');
             const tags = document.createElement('p');
-            const link = document.createElement('a');
+            const deleteLink = document.createElement('a');
+            const editLink = document.createElement('a');
             image.src = `../../${photoId}`;
             description.textContent= "Description: " + photo[0].description;
             tags.textContent= "Tags: " + photo[0].tags;
-            link.href = `/delete/${photo[0].filename}`;
-            link.textContent = "Delete";
+            deleteLink.href = `/delete/${photo[0].filename}`;
+            deleteLink.textContent = "Delete";
+            editLink.href = `/profile/edit/${photo[0].filename}`;
+            editLink.textContent = "Edit";
             document.getElementsByClassName('thumbnail')[0].appendChild(image);
             document.getElementsByClassName('thumbnail')[0].append(description);
             document.getElementsByClassName('thumbnail')[0].append(tags);
-            document.getElementsByClassName('thumbnail')[0].append(link);
+            document.getElementsByClassName('thumbnail')[0].appendChild(deleteLink);
+            document.getElementsByClassName('thumbnail')[0].appendChild(editLink);
             
         }).fail(function (error) {
           console.log(error)
@@ -26,6 +30,5 @@
 
 </script>
 <div class = page-content>
-    <div class = "thumbnail">
-    </div>
+    <div class = "thumbnail"></div>
 </div>

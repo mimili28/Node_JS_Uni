@@ -1,3 +1,20 @@
+    <script>
+        const queryString = window.location.search;
+        if(queryString){
+            if(queryString == "?error?password"){
+                alert("Password does not fulful the requirements.(Minimum 8 characters)");
+            }
+            if(queryString == "?error?username?exists"){
+                alert("Username already exists");
+            }
+            if(queryString == "?error?password?not?match"){
+                alert("Password and Repeat password does not match");
+            }
+            if(queryString == "?error?missing?fields"){
+                alert("Missing fields: username, password, passwordRepeat");
+            }   
+        }
+    </script>
     <div id="register">
         <div class="container">
             <form id="signup-form" class="form" action="" method="post">

@@ -4,6 +4,13 @@ const crypto = require("crypto");
 const Photo = require('../models/Photo.js');
 const User = require('../models/User.js');
 
+const requireLogin = (req, res, next) => {
+    if (req.session.user) {
+      next(); 
+    } else {
+      return res.redirect("/login"); 
+    }
+}
 
 const multer = require("multer");
 const storage = multer.diskStorage({
@@ -23,17 +30,17 @@ router.get("/photos", async (req,res) => {
     return res.status(200).json(photos);
 });
 
-router.get("/photos/:photoId", async (req, res) => {  
+router.get("/photos/:photoId",  requireLogin, async (req, res) => {  
     const photo = await Photo.query().select().where({'filename': req.params.photoId}).limit(1);
     return res.status(200).json(photo);
 });
 
-router.get("/delete/:photoId", async (req,res) => {
+router.get("/delete/:photoId",  requireLogin, async (req,res) => {
     const photo = await Photo.query().delete().where({'filename': req.params.photoId});
     return res.redirect("/profile")
 });
 
-router.post("/upload/photos", upload.single('photo'), async (req, res) => {
+router.post("/upload/photos", requireLogin, upload.single('photo'), async (req, res) => {
      let errors = [];
      const description= req.body.description || "";
      const tags = req.body.tags;
@@ -57,5 +64,32 @@ router.post("/upload/photos", upload.single('photo'), async (req, res) => {
 
      return res.redirect("/");
  });
+
+ router.post("/edit/:photoId", requireLogin, async (req, res) => {
+    const description= req.body.description;
+    const tags = req.body.tags;
+    let errors = [];
+    const uploadDate= new Date();
+
+    if(description.length > 2048){
+        errors.push("The description cant be longer than 2048 chars");
+    }
+    if(errors.length > 0){
+        return res.send({ response: errors});
+    }else{
+        const id = await Photo.query().select("id").where({'filename': req.params.photoId});
+        const photoUpdated = await Photo.query()
+        .findById(id[0].id)
+        .patch({
+            description: description,
+            tags: tags
+        });
+        console.log(description);
+        console.log(tags);
+        return res.redirect(`/profile/${req.params.photoId}`);
+    }
+
+    return res.redirect("/");
+});
  
  module.exports = router;

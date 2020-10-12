@@ -90,6 +90,7 @@ const chatPage = fs.readFileSync("public/chat/chat.html", "utf8");
 const footerPage = fs.readFileSync("public/footer/footer.html", "utf8");
 const profilePage = fs.readFileSync("public/profile/profile.html", "utf8");
 const photoviewPage = fs.readFileSync("public/photoview/photoview.html", "utf8");
+const photoviewEditPage = fs.readFileSync("public/photoview/photoviewEdit.html", "utf8");
 const uploadPage = fs.readFileSync("public/upload/upload.html", "utf8");
 
 app.get("/status", (req, res) => {
@@ -124,9 +125,14 @@ app.get("/profile", requireLogin, (req,res) => {
     return res.send(navbarPage + profilePage + footerPage);
 });
 
-app.get("/profile/:photoId", (req, res) => {
+app.get("/profile/:photoId", requireLogin, (req, res) => {
     return res.send(navbarPage + photoviewPage + footerPage);
 });
+
+app.get("/profile/edit/:photoId", requireLogin, (req, res) => {
+    return res.send(navbarPage + photoviewEditPage + footerPage);
+});
+
 const PORT = 3000;
 
 server.listen(PORT, (error) => {
@@ -134,4 +140,8 @@ server.listen(PORT, (error) => {
         console.log(error);
     }
     console.log("Server running on port", PORT);
-})
+});
+
+module.exports = {
+    requireLogin
+}
